@@ -1,6 +1,8 @@
 import { Producto } from '../interfaces/Producto';
 
 export interface Result {
+    status?: string | number;
     description?: string;    
-    productos?: Producto[];
+    productos?: Producto[] | [];
+    error?: string;
 }

@@ -1,0 +1,15 @@
+<div class="main">
+  <div class="main-toolbar">
+    <input class="main-toolbar_search" type="search" name="toolbarsearch" id="toolbarsearch" placeholder="search"
+      (input)="filtrarProductos($event)">
+    <button class="main-toolbar_buttom">Agregar</button>
+  </div>
+  <div class="main-table">
+    <ng-container *ngIf="loading; else tableContent">
+      <p>Cargando...</p>
+    </ng-container>
+    <ng-template #tableContent>
+      <app-table [productos]="productosFiltrados"></app-table>
+    </ng-template>
+  </div>
+</div>

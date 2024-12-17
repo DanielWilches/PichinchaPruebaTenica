@@ -1,0 +1,43 @@
+<div class="table">
+  <thead class="table-header">
+    <tr class="table-head_titulos">
+      <th>Logo</th>
+      <th>Nombre del Producto</th>
+      <th>Descripción <span class="material-icons icon">info</span></th>
+      <th>Fecha de Liberación <span class="material-icons icon">info</span></th>
+      <th>Fecha de Reestructuración <span class="material-icons icon">info</span></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="table-body">
+    <tr class="table-body_elementos" *ngFor="let producto of productosPaginados">
+      <td><img [src]="producto.logo" alt="{{ producto.name }}" width="50"></td>
+      <td>{{ producto.name }}</td>
+      <td>{{ producto.description }}</td>
+      <td>{{ producto.date_release  | dateFormat}}</td>
+      <td>{{ producto.date_revision | dateFormat }}</td>
+      <td><a><span class="material-icons icon">more_vert</span></a></td>
+    </tr>
+  </tbody>
+
+  <div class="table-paginacion">
+    <div class="table-paginacion_navegacion">
+      <button (click)="cambioPagina(paginaActual - 1)" [disabled]="paginaActual === 1"><span class="material-icons icon">
+        chevron_left
+        </span></button>
+      <p>Página {{ paginaActual }} de {{ totalPages() }}</p>
+      <button (click)="cambioPagina(paginaActual + 1)" [disabled]="paginaActual === totalPages()"><span class="material-icons icon">
+        chevron_right
+        </span></button>
+    </div>
+
+    <div class="table-paginacion_seleccion">
+      <select (change)="cambioItemsPorPagina($event)">
+        <option [value]="5" [selected]="itemsPorPagina === 5">5</option>
+        <option [value]="10" [selected]="itemsPorPagina === 10">10</option>
+        <option [value]="20" [selected]="itemsPorPagina === 20">20</option>
+      </select>
+      <p>{{itemsPorPagina}} resultados </p>
+    </div>
+  </div>
+</div>
